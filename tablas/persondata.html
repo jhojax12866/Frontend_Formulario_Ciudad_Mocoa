@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos de Inicio de Sesión</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Datos de Inicio de Sesión</h2>
+    <table id="loginTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th>Tipo de Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas se llenarán dinámicamente con JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // URL de la API
+        const apiURL = 'http://localhost:8080/login';
+
+        // Obtén la referencia de la tabla
+        const table = document.getElementById('loginTable');
+
+        // Haz una solicitud GET a la API
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(data => {
+                // Itera sobre los datos recibidos
+                data.forEach(item => {
+                    // Crea una nueva fila
+                    const row = document.createElement('tr');
+
+                    // Crea y añade las celdas a la fila
+                    row.innerHTML = `
+                        <td>${item.id}</td>
+                        <td>${item.usuario}</td>
+                        <td>${item.contrasena}</td>
+                        <td>${item.tipoUsuario}</td>
+                    `;
+
+                    // Añade la fila a la tabla
+                    table.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>

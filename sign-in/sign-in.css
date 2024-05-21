@@ -102,3 +102,26 @@ body {
 .img-left {
 margin-left: -260px; /* Puedes ajustar este valor para cambiar la distancia */
 }
+body {
+  background-image: url('file:///D:/Frontend_Encuestas/images/est.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form-signin {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Limitar el ancho máximo del formulario */
+  margin: auto; /* Centrar el formulario horizontalmente */
+}
+
+/* Mantén las reglas existentes aquí */
+
+:root[data-bs-theme='dark'] .titulo,
+:root[data-bs-theme='dark'] .subtitulo,
+:root[data-bs-theme='dark'] .remember-me {
+  color: black;
+}

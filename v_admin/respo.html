@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      display: flex;
+      align-items: stretch;
+      height: 100vh;
+      background-image: url('../images/principal.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 48px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      background-color: #343a40;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-heading {
+      font-size: 1.2rem;
+      padding: 0 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+      padding: .25rem 1rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+    }
+
+    .cover-container {
+      max-width: 42em;
+      margin-left: 250px;
+    }
+
+    .masthead {
+      margin-bottom: 2em;
+    }
+
+    main {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 70px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+  <div class="sidebar">
+    <h4 class="sidebar-heading">Sidebar</h4>
+    <nav>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="../principal/principal.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="../v_admin/pregunta.html">agregar pregunta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="../v_admin/encuestadata.html">Formulario</a>
+        </li>
+        <li class="nav-item">
+          <button onclick="window.location.href='../sign-in-admin/admin.html'" class="btn btn-secondary">Cerrar Sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <main class="px-3">
+      <h1>Respuestas</h1>
+      <p class="lead">AGREGA UNA RESPUESTA </p>
+      <button type="button" class="btn btn-success btn-sm" onclick="crearRespuesta()">Crear</button>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Respuesta</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="respuestasTableBody">
+          <!-- Aquí se añadirán las filas de respuestas -->
+        </tbody>
+      </table>
+    </main>
+
+    <!-- Footer -->
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('http://localhost:8080/respuestas')
+          .then(response => response.json())
+          .then(data => {
+            const tableBody = document.getElementById('respuestasTableBody');
+            data.forEach(respuesta => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${respuesta.id}</td>
+                <td>${respuesta.respuesta}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" onclick="editarRespuesta(${respuesta.id})">Editar</button>
+                  <button type="button" class="btn btn-danger btn-sm" onclick="eliminarRespuesta(${respuesta.id})">Eliminar</button>
+                
+                </td>
+              `;
+              tableBody.appendChild(row);
+            });
+
+            // Agregar fila para crear nueva respuesta
+  
+            tableBody.appendChild(newRow);
+          })
+          .catch(error => console.error('Error fetching respuestas:', error));
+      });
+    function crearRespuesta() {
+      const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
+      if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
+        fetch('http://localhost:8080/respuestas', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              respuesta: nuevaRespuesta
+            }),
+          })
+          .then(response => {
+            if (response.ok) {
+              // Actualizar la tabla después de crear la respuesta
+              location.reload();
+            } else {
+              throw new Error('Error al crear la respuesta');
+            }
+          })
+          .catch(error => console.error('Error al crear la respuesta:', error));
+      }
+    }
+
+    function editarRespuesta(id) {
+      const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
+      if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
+        fetch(`http://localhost:8080/respuestas/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              respuesta: nuevaRespuesta
+            }),
+          })
+          .then(response => {
+            if (response.ok) {
+              // Actualizar la tabla después de editar la respuesta
+              location.reload();
+            } else {
+              throw new Error('Error al editar la respuesta');
+            }
+          })
+          .catch(error => console.error('Error al editar la respuesta:', error));
+      }
+    }
+
+    function eliminarRespuesta(id) {
+      if (confirm("¿Estás seguro de que quieres eliminar esta respuesta?")) {
+        fetch(`http://localhost:8080/respuestas/${id}`, {
+            method: 'DELETE',
+          })
+          .then(response => {
+            if (response.ok) {
+              // Actualizar la tabla después de eliminar la respuesta
+              location.reload();
+            } else {
+              throw new Error('Error al eliminar la respuesta');
+            }
+          })
+          .catch(error => console.error('Error al eliminar la respuesta:', error));
+      }
+    }
+
+    function agregarRespuesta() {
+      const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
+      if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
+        fetch('http://localhost:8080/respuestas', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              respuesta: nuevaRespuesta
+            }),
+          })
+          .then(response => {
+            if (response.ok) {
+              // Actualizar la tabla después de agregar la respuesta
+              location.reload();
+            } else {
+              throw new Error('Error al agregar la respuesta');
+            }
+          })
+          .catch(error => console.error('Error al agregar la respuesta:', error));
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Código existente para cargar las respuestas y crear las filas de la tabla
+
+      // Agregar el botón para agregar respuesta en la última columna de cada fila
+      const rows = document.querySelectorAll('#respuestasTableBody tr');
+      rows.forEach(row => {
+        const cell = document.createElement('td');
+        const button = document.createElement('button');
+        button.className = 'btn btn-primary btn-sm';
+        button.innerText = 'Agregar Respuesta';
+        button.onclick = () => agregarRespuesta();
+        cell.appendChild(button);
+        row.appendChild(cell);
+      });
+    });
+
+  </script>
+</body>
+
+</html>

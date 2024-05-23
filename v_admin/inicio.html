@@ -10,28 +10,27 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    /* Custom styles for this template */
     body {
-  display: flex;
-  align-items: stretch;
-  height: 100vh;
-  background-image: url('../images/principal.jpg'); /* Ruta relativa a la carpeta "inicio" */
-  background-size: cover;
-  background-position: center;
-}
+      display: flex;
+      align-items: stretch;
+      height: 100vh;
+      background-image: url('../images/principal.jpg');
+      background-size: cover;
+      background-position: center;
+    }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  padding: 48px 0 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  background-color: #343a40;
-  color: #fff;
-  margin-bottom: 20px; /* Margen inferior para separarla del contenido principal */
-}
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 48px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      background-color: #343a40;
+      color: #fff;
+      margin-bottom: 20px;
+    }
 
     .sidebar-heading {
       font-size: 1.2rem;
@@ -52,25 +51,33 @@
 
     .cover-container {
       max-width: 42em;
-      margin-left: 250px; /* Width of the sidebar */
+      margin-left: 250px;
     }
 
     .masthead {
       margin-bottom: 2em;
     }
+
     main {
-  background-color: rgba(255, 255, 255, 0.8); /* Blanco con transparencia */
-  padding: 20px; /* Añade un poco de espacio alrededor del contenido */
-  border-radius: 10px; /* Añade bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra suave */
-  flex: 1; /* Que ocupe todo el espacio disponible en el contenedor flex */
-  margin-left: 0; /* Elimina el margen izquierdo */
-  margin-right: 0; /* Elimina el margen derecho */
-  margin-top: 70px; /* Margen superior para dejar espacio a la barra de navegación */
-}
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 70px;
+    }
 
+    table {
+      width: 100%;
+      margin-top: 20px;
+    }
 
-
+    th,
+    td {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -80,51 +87,38 @@
     <nav>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="/principal/principal.html">Home</a>
+          <a class="nav-link active" href="../principal/principal.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/v_admin/inicio.html">formularios</a>
+          <a class="nav-link active" href="../v_admin/pregunta.html">agregar pregunta</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link active" href="../v_admin/respo.html">agregar respuesta</a>
         </li>
-        <form action="../principal/principal.html">
-          <li class="nav-item">
-            <button type="submit" class="btn btn-secondary">Cerrar Sesión</button>
-          </li>
-        </form>
+        <li class="nav-item">
+          <a class="nav-link active" href="../v_admin/encuestadata.html">agregar encuesta</a>
+        </li>
+
+        <li class="nav-item">
+          <button onclick="window.location.href='../sign-in-admin/admin.html'" class="btn btn-secondary">Cerrar Sesión</button>
+        </li>
       </ul>
     </nav>
   </div>
 
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
-      <div>
-        <h3 class="float-md-start mb-0">Institucion Educativa Ciudad Mocoa</h3>
-        
-      </div>
-    </header>
-
     <main class="px-3">
-      <h1>Bienvenidos padres y madres de familia</h1>
-      <p class="lead">porfavor llenar la informacion de las encuestas disponibles.</p>
-      <p class="lead">
-        <a href="#" class="btn btn-lg btn-light fw-bold border-dark bg-light">acerca de nosotros</a>
-        
-      </p>
+      <h1>BIENVENIDO</h1>
+      <p class="lead"> USUARIO ADMINISTRADOR </p>
+     
     </main>
 
     <footer class="mt-auto text-white-50">
       <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-      
+      </footer>
+    </div>
 
-    </footer>
     
-  </div>
+  </body>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-</body>
-
-</html>
+  </html>

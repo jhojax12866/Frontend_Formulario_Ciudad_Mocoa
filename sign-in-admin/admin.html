@@ -69,6 +69,10 @@
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
     </form>
+    <!-- Formulario oculto para admin -->
+    <form id="adminForm" action="../v_admin/inicio.html" method="get" style="display: none;"></form>
+    <!-- Formulario oculto para estudiante -->
+    <form id="studentForm" action="../v_estudiante/inicio.html" method="get" style="display: none;"></form>
   </main>
   <script>
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
@@ -95,9 +99,9 @@
 
         if (response.ok) {
           if (message === 'Admin encontrado') {
-            window.location.href = '../v_admin/inicio.html'; // Redirigir a la vista de admin
+            document.getElementById('adminForm').submit(); // Enviar formulario de admin
           } else if (message === 'Estudiante encontrado') {
-            window.location.href = '../v_estudiante/inicio.html'; // Redirigir a la vista de estudiante
+            document.getElementById('studentForm').submit(); // Enviar formulario de estudiante
           } else {
             console.error(message); // Tipo de usuario no válido
           }

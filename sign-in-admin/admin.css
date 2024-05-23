@@ -103,7 +103,7 @@ body {
 margin-left: -260px; /* Puedes ajustar este valor para cambiar la distancia */
 }
 body {
-    background-image: url('file:///D:/Frontend_Encuestas/images/sssurf.svg');
+    background-image: url('../images/sssurf.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

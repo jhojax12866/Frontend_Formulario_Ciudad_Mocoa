@@ -51,7 +51,7 @@
   </div>
   <main class="form-signin w-100 m-auto">
     <form id="loginForm">
-      <img class="mb-4 img-left" src="file:///D:/Frontend_Encuestas/images/titulo.png" alt="" width="700" height="80">
+      <img class="mb-4 img-left" src="../images/titulo.png" alt="" width="700" height="80">
       <h1 class="h3 mb-3 fw-normal">Inicia Sesión</h1>
       <div class="form-floating">
         <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
@@ -95,9 +95,9 @@
 
         if (response.ok) {
           if (message === 'Admin encontrado') {
-            window.location.href = 'file:///D:/sena/Frontend_Formulario_Ciudad_Mocoa/v_admin/inicio.html'; // Redirigir a la vista de admin
+            window.location.href = '../v_admin/inicio.html'; // Redirigir a la vista de admin
           } else if (message === 'Estudiante encontrado') {
-            window.location.href = 'file:///D:/sena/Frontend_Formulario_Ciudad_Mocoa/v_estudiante/inicio.html'; // Redirigir a la vista de estudiante
+            window.location.href = '../v_estudiante/inicio.html'; // Redirigir a la vista de estudiante
           } else {
             console.error(message); // Tipo de usuario no válido
           }

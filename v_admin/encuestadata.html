@@ -81,6 +81,7 @@
   </style>
 </head>
 
+
 <body class="text-center">
   <div class="sidebar">
     <h4 class="sidebar-heading">Sidebar</h4>
@@ -109,16 +110,7 @@
     <main class="px-3">
       <h1>Encuestas</h1>
       <p class="lead">AGREGA UNA ENCUESTA</p>
-
-      <form id="encuestaForm" onsubmit="crearEncuesta(event)">
-        <div class="mb-3">
-          <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
-          <input type="text" class="form-control" id="nombreEncuesta" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Crear Encuesta</button>
-      </form>
-
-      <table class="table table-striped mt-5">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -130,6 +122,7 @@
           <!-- Aquí se añadirán las filas de encuestas -->
         </tbody>
       </table>
+      <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../v_admin/nueva_encuesta.html'">Agregar Encuesta</button>
     </main>
 
     <footer class="mt-auto text-white-50">
@@ -142,19 +135,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      fetch('http://localhost:8080/encuestas')
+      fetch('http://localhost:8080/formularios')
         .then(response => response.json())
         .then(data => {
           const tableBody = document.getElementById('encuestasTableBody');
-          data.forEach(encuesta => {
+          data.forEach(formulario => {
             const row = document.createElement('tr');
             row.innerHTML = `
-              <td>${encuesta.id}</td>
-              <td>${encuesta.nombre}</td>
+              <td>${formulario.id}</td>
+              <td>${formulario.askAnswer.encuesta.nombre}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="editar(${encuesta.id})">Editar</button>
-                <button type="button" class="btn btn-danger btn-sm" onclick="eliminar(${encuesta.id})">Eliminar</button>
-                <button type="button" class="btn btn-success btn-sm" onclick="verEncuesta(${encuesta.id})">Ver</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="editar(${formulario.id})">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="eliminar(${formulario.id})">Eliminar</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../v_admin/tb.html?id=${formulario.id}'">Ver Encuesta</button>
+                <button type="button" class="btn btn-info btn-sm" onclick="window.location.href='../v_admin/pregunta.html'">?</button>
               </td>
             `;
             tableBody.appendChild(row);
@@ -163,35 +157,17 @@
         .catch(error => console.error('Error fetching encuestas:', error));
     });
 
-    function crearEncuesta(event) {
-      event.preventDefault();
-      const nombreEncuesta = document.getElementById('nombreEncuesta').value;
-      fetch('http://localhost:8080/encuestas', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ nombre: nombreEncuesta }),
-      })
-        .then(response => {
-          if (response.ok) {
-            location.reload();
-          } else {
-            throw new Error('Error al crear la encuesta');
-          }
-        })
-        .catch(error => console.error('Error al crear la encuesta:', error));
-    }
-
     function editar(id) {
       const nuevoNombre = prompt("Ingrese el nuevo nombre de la encuesta:");
       if (nuevoNombre !== null && nuevoNombre.trim() !== "") {
-        fetch(`http://localhost:8080/encuestas/${id}`, {
+        fetch(`http://localhost:8080/encuesta/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ nombre: nuevoNombre }),
+          body: JSON.stringify({
+            nombre: nuevoNombre
+          }),
         })
           .then(response => {
             if (response.ok) {
@@ -205,8 +181,8 @@
     }
 
     function eliminar(id) {
-      if (confirm("¿Está seguro de que desea eliminar esta encuesta?")) {
-        fetch(`http://localhost:8080/encuestas/${id}`, {
+      if (confirm("¿Estás seguro de que quieres eliminar esta encuesta?")) {
+        fetch(`http://localhost:8080/encuesta/${id}`, {
           method: 'DELETE',
         })
           .then(response => {
@@ -219,43 +195,7 @@
           .catch(error => console.error('Error al eliminar la encuesta:', error));
       }
     }
-
-    function verEncuesta(id) {
-      fetch(`http://localhost:8080/encuestas/${id}`)
-        .then(response => response.json())
-        .then(encuesta => {
-          let encuestaInfo = `<h5>${encuesta.nombre}</h5>`;
-          let encuestaModalBody = document.getElementById('encuestaModalBody');
-          if (encuestaModalBody) {
-            encuestaModalBody.innerHTML = encuestaInfo;
-            var myModal = new bootstrap.Modal(document.getElementById('encuestaModal'));
-            myModal.show();
-          } else {
-            console.error('Elemento no encontrado: encuestaModalBody');
-          }
-        })
-        .catch(error => console.error('Error al obtener la encuesta:', error));
-    }
   </script>
-
-  <!-- Modal for displaying encuesta details -->
-  <div class="modal fade" id="encuestaModal" tabindex="-1" aria-labelledby="encuestaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="encuestaModalLabel">Detalles de la Encuesta</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="encuestaModalBody">
-          <!-- Detalles de la encuesta se mostrarán aquí -->
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
 </body>
 
 </html>

@@ -123,54 +123,47 @@
         </tbody>
       </table>
     </main>
-
-    <!-- Footer -->
   </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('http://localhost:8080/respuestas')
-          .then(response => response.json())
-          .then(data => {
-            const tableBody = document.getElementById('respuestasTableBody');
-            data.forEach(respuesta => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td>${respuesta.id}</td>
-                <td>${respuesta.respuesta}</td>
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" onclick="editarRespuesta(${respuesta.id})">Editar</button>
-                  <button type="button" class="btn btn-danger btn-sm" onclick="eliminarRespuesta(${respuesta.id})">Eliminar</button>
-                
-                </td>
-              `;
-              tableBody.appendChild(row);
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+      fetch('http://localhost:8080/respuestas')
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.getElementById('respuestasTableBody');
+          data.forEach(respuesta => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${respuesta.id}</td>
+              <td>${respuesta.respuesta}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" onclick="editarRespuesta(${respuesta.id})">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="ocultarRespuesta(this)">Eliminar</button>
+              </td>
+            `;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch(error => console.error('Error fetching respuestas:', error));
+    });
 
-            // Agregar fila para crear nueva respuesta
-  
-            tableBody.appendChild(newRow);
-          })
-          .catch(error => console.error('Error fetching respuestas:', error));
-      });
     function crearRespuesta() {
       const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
       if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
         fetch('http://localhost:8080/respuestas', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              respuesta: nuevaRespuesta
-            }),
-          })
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            respuesta: nuevaRespuesta
+          }),
+        })
           .then(response => {
             if (response.ok) {
-              // Actualizar la tabla después de crear la respuesta
               location.reload();
             } else {
               throw new Error('Error al crear la respuesta');
@@ -184,17 +177,16 @@
       const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
       if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
         fetch(`http://localhost:8080/respuestas/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              respuesta: nuevaRespuesta
-            }),
-          })
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            respuesta: nuevaRespuesta
+          }),
+        })
           .then(response => {
             if (response.ok) {
-              // Actualizar la tabla después de editar la respuesta
               location.reload();
             } else {
               throw new Error('Error al editar la respuesta');
@@ -204,63 +196,12 @@
       }
     }
 
-    function eliminarRespuesta(id) {
+    function ocultarRespuesta(button) {
       if (confirm("¿Estás seguro de que quieres eliminar esta respuesta?")) {
-        fetch(`http://localhost:8080/respuestas/${id}`, {
-            method: 'DELETE',
-          })
-          .then(response => {
-            if (response.ok) {
-              // Actualizar la tabla después de eliminar la respuesta
-              location.reload();
-            } else {
-              throw new Error('Error al eliminar la respuesta');
-            }
-          })
-          .catch(error => console.error('Error al eliminar la respuesta:', error));
+        const row = button.closest('tr');
+        row.style.display = 'none';
       }
     }
-
-    function agregarRespuesta() {
-      const nuevaRespuesta = prompt("Ingrese la nueva respuesta:");
-      if (nuevaRespuesta !== null && nuevaRespuesta.trim() !== "") {
-        fetch('http://localhost:8080/respuestas', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              respuesta: nuevaRespuesta
-            }),
-          })
-          .then(response => {
-            if (response.ok) {
-              // Actualizar la tabla después de agregar la respuesta
-              location.reload();
-            } else {
-              throw new Error('Error al agregar la respuesta');
-            }
-          })
-          .catch(error => console.error('Error al agregar la respuesta:', error));
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // Código existente para cargar las respuestas y crear las filas de la tabla
-
-      // Agregar el botón para agregar respuesta en la última columna de cada fila
-      const rows = document.querySelectorAll('#respuestasTableBody tr');
-      rows.forEach(row => {
-        const cell = document.createElement('td');
-        const button = document.createElement('button');
-        button.className = 'btn btn-primary btn-sm';
-        button.innerText = 'Agregar Respuesta';
-        button.onclick = () => agregarRespuesta();
-        cell.appendChild(button);
-        row.appendChild(cell);
-      });
-    });
-
   </script>
 </body>
 

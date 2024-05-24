@@ -85,90 +85,130 @@
 <body class="text-center">
     <div class="container mt-5">
         <h1 class="mb-4">Encuesta</h1>
-        <p class="lead">Marque Sí y No</p>
+        <p class="lead">Marque Sí o No</p>
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <form action="../v_estudiante/encuestadatac.html">
                     <div class="card">
                         <div class="pregunta">¿El estudiante vive solo?</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="viveSolo" id="viveSoloSi" value="si">
+                                <label class="form-check-label" for="viveSoloSi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="viveSolo" id="viveSoloNo" value="no">
+                                <label class="form-check-label" for="viveSoloNo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Embarazo Adolescente?</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="embarazoAdolescente" id="embarazoSi" value="si">
+                                <label class="form-check-label" for="embarazoSi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="embarazoAdolescente" id="embarazoNo" value="no">
+                                <label class="form-check-label" for="embarazoNo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Realiza algún tipo de trabajo remunerado o no remunerado?</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="trabajo" id="trabajoSi" value="si">
+                                <label class="form-check-label" for="trabajoSi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="trabajo" id="trabajoNo" value="no">
+                                <label class="form-check-label" for="trabajoNo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Maternidad o Paternidad a temprana edad?</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="maternidadPaternidad" id="maternidadSi" value="si">
+                                <label class="form-check-label" for="maternidadSi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="maternidadPaternidad" id="maternidadNo" value="no">
+                                <label class="form-check-label" for="maternidadNo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Refiere que ha sido víctima de discriminación, agresiones físicas o agresiones verbales en razón a sus expresiones de género, su orientación o identidad sexual? (Para población LGBTI)</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="discriminacionLGBTI" id="discriminacionLGBTISi" value="si">
+                                <label class="form-check-label" for="discriminacionLGBTISi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="discriminacionLGBTI" id="discriminacionLGBTINo" value="no">
+                                <label class="form-check-label" for="discriminacionLGBTINo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Refiere que ha sido víctima de agresiones físicas, verbales o sexuales por parte de alguien de su entorno educativo o familiar?</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Sí</option>
-                                <option value="2">No</option>
-                            </select>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="agresiones" id="agresionesSi" value="si">
+                                <label class="form-check-label" for="agresionesSi">Sí</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="agresiones" id="agresionesNo" value="no">
+                                <label class="form-check-label" for="agresionesNo">No</label>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="pregunta">¿Refiere que ha sido víctima de discriminación en razón a:</div>
                         <div class="respuesta">
-                            <select class="form-select">
-                                <option selected disabled>Selecciona una respuesta</option>
-                                <option value="1">Discapacidad</option>
-                                <option value="2">A su ritmo de aprendizaje</option>
-                                <option value="3">Religión</option>
-                                <option value="4">A su pertenencia Étnica</option>
-                                <option value="5">Características Familiares</option>
-                                <option value="6">Otras. ¿Cuáles?</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="discapacidad" value="discapacidad">
+                                <label class="form-check-label" for="discapacidad">Discapacidad</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="ritmoAprendizaje" value="ritmoAprendizaje">
+                                <label class="form-check-label" for="ritmoAprendizaje">A su ritmo de aprendizaje</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="religion" value="religion">
+                                <label class="form-check-label" for="religion">Religión</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="etnica" value="etnica">
+                                <label class="form-check-label" for="etnica">A su pertenencia Étnica</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="familiares" value="familiares">
+                                <label class="form-check-label" for="familiares">Características Familiares</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="discriminacionRazon" id="otras" value="otras">
+                                <label class="form-check-label" for="otras">Otras. ¿Cuáles?</label>
+                                <input type="text" class="form-control mt-2" name="otrasCuales" id="otrasCuales" placeholder="Especifique">
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <div class="card">
+                        <div class="pregunta">¿Qué desea estudiar o no tiene definido qué estudiar?</div>
+                        <div class="respuesta">
+                            <input type="text" class="form-control" name="queEstudiar" id="queEstudiar" placeholder="Especifique">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
                 </form>
             </div>
         </div>
     </div>
-
+</body>
     <!-- Bootstrap core JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

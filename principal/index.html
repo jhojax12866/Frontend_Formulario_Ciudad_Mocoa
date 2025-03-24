@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Institucion Educativa Ciudad Mocoa</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header id="top">
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">Soporte al cliente</span>
+                        <span class="number">3224230700</span>
+                    </div>
+                </div>
+                <div class="container-logo">
+                    <h1 class="logo"><a href="/">INSTITUCION EDUCATIVA CIUDAD MOCOA</a></h1>
+                </div>
+            </div>
+        </div>
+        <div class="container-navbar">
+            <nav class="navbar container">
+                <i class="fa-solid fa-bars"></i>
+                <ul class="menu">
+                    <li class="dropdown">
+                        <a href="../sign-in-admin/admin.html">Inicia sesion</a>
+                       
+                    </li>
+                </ul>
+                <form class="search-form">
+                    <input type="search" placeholder="Buscar..." />
+                    <button class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="content-banner">
+            <h2>Sistema de aplicacion de encuestas</h2>
+            <a href="#top">Inicia secion arriba</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="container top-products">
+            <h1 class="heading-1">INSTITUCION EDUCATIVA CIUDAD MOCOA</h1>
+            <div class="container-options">
+                <span class="active">CALIDAD Y EDUCACION </span>
+            </div>
+            <div class="container-products">
+                <div class="card-product">
+                    <div class="container-img">
+                        <img src="../images/m1.jpg" alt="Cafe Irish" />
+                    </div>
+                    <div class="content-card-product">
+                        <h3>CAMPEONATO</h3>
+                    </div>
+                </div>
+                <div class="card-product">
+                    <div class="container-img">
+                        <img src="../images/m2.jpg" alt="Cafe incafe-ingles.jpg" />
+                    </div>
+                    <div class="content-card-product">
+                        <h3>IZADA DE BANDERA</h3>
+                    </div>
+                </div>
+                <div class="card-product">
+                    <div class="container-img">
+                        <img src="../images/m3.jpg" alt="Cafe Australiano" />
+                    </div>
+                    <div class="content-card-product">
+                        <h3>IZADA DE BANDERA</h3>
+                    </div>
+                </div>
+                <div class="card-product">
+                    <div class="container-img">
+                        <img src="../images/m4.jpg" alt="Cafe Helado" />
+                    </div>
+                    <div class="content-card-product">
+                        <h3>PERSONERIA</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container container-footer">
+            <div class="menu-footer">
+                <div class="contact-info">
+                    <p class="title-footer">Información de Contacto</p>
+                    <ul>
+                        <li>Calle 14 # 18-270, Mocoa, Colombia</li>
+                        <li>Teléfono: +32 19 01 85 25</li>
+                        <li>Fax: https://ieciudadmocoa.edu.co/iemocoa/</li>
+                        <li>EmaiL: ciudadmocoa.facebook@ieciudadmocoa.edu.co</li>
+                    </ul>
+                    <div class="social-icons">
+                        <span class="facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </span>
+                        <span class="twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </span>
+                        <span class="youtube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </span>
+                        <span class="pinterest">
+                            <i class="fa-brands fa-pinterest-p"></i>
+                        </span>
+                        <span class="instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="information">
+                    <p class="title-footer">Información</p>
+                    <ul>
+                        <li><a href="#">Acerca de Nosotros</a></li>
+                        <li><a href="#">Información Delivery</a></li>
+                        <li><a href="#">Politicas de Privacidad</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Contactános</a></li>
+                    </ul>
+                </div>
+                <div class="newsletter">
+                    <p class="title-footer">Boletín informativo</p>
+                    <div class="content">
+                        <p>Suscríbete a nuestros boletines ahora y mantente al día con nuevas colecciones y ofertas exclusivas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p></p>
+                <p>Desarrollado por DESARROLLADORES CODESTAR INC 2024@</p>
+                <img class="small-image" src="../images/codex.png" alt="Pagos">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
